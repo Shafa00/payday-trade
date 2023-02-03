@@ -39,6 +39,7 @@ public class User {
     @Generated(value = GenerationTime.INSERT)
     Boolean isActive;
 
+    @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "rel_user_role",
@@ -47,10 +48,12 @@ public class User {
     )
     List<Role> roles;
 
+    @ToString.Exclude
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     Account account;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "user")
     List<Order> order;
 }

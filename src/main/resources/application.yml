@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: payday-trade
+  h2:
+    console:
+      enabled: true
+#  datasource:
+#    url: ${DB_URL:jdbc:h2:tcp://localhost:9090/mem:dev}
+#    username: ${DB_USERNAME:dbuser}
+#    password: ${DB_PASSWORD:letmein}
+  datasource:
+    url: ${DB_URL:jdbc:h2:mem:testdb}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase/changelog-master.yaml
+    drop-first: false
+    default-schema: ${DB_SCHEMA:public}
+    database-change-log-table: ${DB_LOG_TABLE:dbchangelog}
+    database-change-log-lock-table: ${DB_LOG_LOCK_TABLE:dbchangeloglock}
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    username: ${MAIL_USERNAME:sefammmdv00@gmail.com}
+    password: ${MAIL_PASSWORD:hiltyrkyxauyvrgc}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+          starttls:
+            enable: true
+
+server:
+  port: ${SERVER_PORT:8080}
+
+jwt:
+  expiry: ${JWT_EXPIRY:3600000}
+  secret: ${JWT_SECRET:temporarysecretkey}
+
+client:
+  stock:
+    secret-key: ${STOCK_SECRET_KEY:34ea3eaa58msh316e0af08f45643p19c2dcjsnefbf2d1c45ec}
+    url: ${STOCK_API_URL:https://latest-stock-price.p.rapidapi.com}
+
+scheduler:
+  cron:
+    fill-order: ${FILL_ORDER_CRON:0 * * ? * *} # every minute
+  prop:
+    shed-table-name: public.app_shedlock
+

@@ -1,0 +1,229 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1675410159863-1
+      author: shafamammadova (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_E
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: ACCOUNT_NUMBER
+                  type: VARCHAR(255)
+              - column:
+                  name: AMOUNT
+                  type: DECIMAL(19, 2)
+              - column:
+                  name: EXTERNAL_ID
+                  type: VARCHAR(255)
+            tableName: ACCOUNT
+  - changeSet:
+      id: 1675410159863-2
+      author: shafamammadova (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_4
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: EXTERNAL_ID
+                  type: VARCHAR(255)
+              - column:
+                  name: IS_FILLED
+                  type: BOOLEAN
+              - column:
+                  name: ORDER_TYPE
+                  type: VARCHAR(255)
+              - column:
+                  name: PRICE
+                  type: DECIMAL(19, 2)
+              - column:
+                  name: STOCK
+                  type: VARCHAR(255)
+              - column:
+                  name: USER_ID
+                  type: BIGINT
+            tableName: APP_ORDER
+  - changeSet:
+      id: 1675410159863-3
+      author: shafamammadova (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_7
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: EMAIL
+                  type: VARCHAR(255)
+              - column:
+                  name: EXTERNAL_ID
+                  type: VARCHAR(255)
+              - column:
+                  name: IS_ACTIVE
+                  type: BOOLEAN
+              - column:
+                  name: NAME
+                  type: VARCHAR(255)
+              - column:
+                  name: PASSWORD
+                  type: VARCHAR(255)
+              - column:
+                  name: ACCOUNT_ID
+                  type: BIGINT
+            tableName: APP_USER
+  - changeSet:
+      id: 1675410159863-4
+      author: shafamammadova (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: USER_ID
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: ROLE_ID
+                  type: BIGINT
+            tableName: REL_USER_ROLE
+  - changeSet:
+      id: 1675410159863-5
+      author: shafamammadova (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_2
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: EXTERNAL_ID
+                  type: VARCHAR(255)
+              - column:
+                  name: ROLE_NAME
+                  type: VARCHAR(255)
+            tableName: ROLE
+  - changeSet:
+      id: 1675410159863-6
+      author: shafamammadova (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: ROLE_ID
+            indexName: FK1UXDUYL9A5VAA3269V64SEYE_INDEX_1
+            tableName: REL_USER_ROLE
+  - changeSet:
+      id: 1675410159863-7
+      author: shafamammadova (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: USER_ID
+            indexName: FK2R78EX0V2JHY77YL7L5YM4D41_INDEX_1
+            tableName: REL_USER_ROLE
+  - changeSet:
+      id: 1675410159863-8
+      author: shafamammadova (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: USER_ID
+            indexName: FKESRWI8I75102XO4K9YKICPP7V_INDEX_4
+            tableName: APP_ORDER
+  - changeSet:
+      id: 1675410159863-9
+      author: shafamammadova (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: ACCOUNT_ID
+            indexName: FKNGS581VUGANNC8IT964OHG2PT_INDEX_7
+            tableName: APP_USER
+  - changeSet:
+      id: 1675410159863-10
+      author: shafamammadova (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: ROLE_ID
+            baseTableName: REL_USER_ROLE
+            constraintName: FK1UXDUYL9A5VAA3269V64SEYE
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: ROLE
+            validate: true
+  - changeSet:
+      id: 1675410159863-11
+      author: shafamammadova (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: USER_ID
+            baseTableName: REL_USER_ROLE
+            constraintName: FK2R78EX0V2JHY77YL7L5YM4D41
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: APP_USER
+            validate: true
+  - changeSet:
+      id: 1675410159863-12
+      author: shafamammadova (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: USER_ID
+            baseTableName: APP_ORDER
+            constraintName: FKESRWI8I75102XO4K9YKICPP7V
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: APP_USER
+            validate: true
+  - changeSet:
+      id: 1675410159863-13
+      author: shafamammadova (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: ACCOUNT_ID
+            baseTableName: APP_USER
+            constraintName: FKNGS581VUGANNC8IT964OHG2PT
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: ACCOUNT
+            validate: true

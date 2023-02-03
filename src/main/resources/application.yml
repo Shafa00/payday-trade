@@ -4,10 +4,6 @@ spring:
   h2:
     console:
       enabled: true
-#  datasource:
-#    url: ${DB_URL:jdbc:h2:tcp://localhost:9090/mem:dev}
-#    username: ${DB_USERNAME:dbuser}
-#    password: ${DB_PASSWORD:letmein}
   datasource:
     url: ${DB_URL:jdbc:h2:mem:testdb}
     username: ${DB_USERNAME:sa}
@@ -25,9 +21,9 @@ spring:
     database-change-log-lock-table: ${DB_LOG_LOCK_TABLE:dbchangeloglock}
 
   mail:
-    host: ${MAIL_HOST:smtp.gmail.com}
-    username: ${MAIL_USERNAME:sefammmdv00@gmail.com}
-    password: ${MAIL_PASSWORD:hiltyrkyxauyvrgc}
+    host: ${MAIL_HOST}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:
